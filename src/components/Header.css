@@ -1,0 +1,102 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 1.5rem;
+  border: 2px solid #333;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  background: #fff;
+  position: relative;
+}
+
+.menu-icon,
+.user-icon {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.menu-icon {
+  left: 1rem;
+}
+
+.user-icon {
+  right: 1rem;
+}
+
+.app-title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: normal;
+  text-align: center;
+  flex: 1;
+}
+
+.app-title a {
+  text-decoration: none !important;
+  color: inherit;
+}
+
+@media (max-width: 600px) {
+  .header {
+    padding: 0.5rem 0.5rem;
+    border-radius: 0;
+  }
+  .app-title {
+    font-size: 1.1rem;
+  }
+  .menu-icon,
+  .user-icon {
+    width: 2.2rem;
+    height: 2.2rem;
+    font-size: 1.1rem;
+  }
+}
+
+.menu-icon,
+.user-icon {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-icon:hover,
+.user-icon:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.app-title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: normal;
+}
+
+.app-title a {
+  text-decoration: none !important;
+  color: inherit;
+}
+
+.user-icon {
+  border: 2px solid #333;
+  border-radius: 50%;
+}
