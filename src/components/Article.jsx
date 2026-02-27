@@ -59,15 +59,23 @@ function Article() {
       )}
       <div className="comments-section">
         <h3>Comments</h3>
-        {comments.map((comment) => (
-          <div key={comment.comment_id} className="comment-card">
-            <div className="comment-author">{comment.author}</div>
-            <div className="comment-body">{comment.body}</div>
-            <div className="comment-date">
-              Posted: {new Date(comment.created_at).toLocaleString()}
+        {comments.map((comment) => {
+          const date = new Date(comment.created_at);
+          const formattedDate = date.toLocaleDateString(undefined, {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+          });
+          return (
+            <div key={comment.comment_id} className="comment-card">
+              <div className="comment-author">{comment.author}</div>
+              <div className="comment-body">{comment.body}</div>
+              <div className="comment-date">Posted: {formattedDate}</div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
