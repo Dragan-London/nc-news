@@ -1,3 +1,30 @@
+/* Own comment highlight */
+.own-comment {
+  border: 2px solid #007bff;
+  background: #f0f8ff;
+}
+.own-label {
+  color: #4f504b;
+  font-weight: bold;
+  margin-left: 0.5em;
+}
+.comment-delete-btn {
+  margin-top: 0.5em;
+  padding: 0.3em 1em;
+  font-size: 0.95em;
+  border-radius: 4px;
+  border: none;
+  background: #7c1d1d;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-left: 0.5em;
+}
+.comment-delete-btn:disabled {
+  background: #ccc;
+  color: #888;
+  cursor: not-allowed;
+}
 .comment-form {
   margin-bottom: 1em;
 }

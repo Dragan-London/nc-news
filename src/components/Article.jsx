@@ -13,6 +13,9 @@ function Article() {
   const [newComment, setNewComment] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
+  const [deletingId, setDeletingId] = useState(null);
+  const [deleteError, setDeleteError] = useState("");
+  const currentUser = "grumpy19";
 
   useEffect(() => {
     async function fetchArticle() {
@@ -113,14 +116,53 @@ function Article() {
             hour: "2-digit",
             minute: "2-digit",
           });
+          const isOwn = comment.author === currentUser;
           return (
-            <div key={comment.comment_id} className="comment-card">
+            <div
+              key={comment.comment_id}
+              className={`comment-card${isOwn ? " own-comment" : ""}`}
+            >
               <div className="comment-author">{comment.author}</div>
+              {isOwn && (
+                <div className="own-label" aria-label="My comment">
+                  (My comment)
+                </div>
+              )}
               <div className="comment-body">{comment.body}</div>
               <div className="comment-date">Posted: {formattedDate}</div>
+              {isOwn && (
+                <button
+                  className="comment-delete-btn"
+                  disabled={deletingId === comment.comment_id}
+                  onClick={async () => {
+                    setDeleteError("");
+                    setDeletingId(comment.comment_id);
+                    try {
+                      await axios.delete(
+                        `https://nc-news-764k.onrender.com/api/comments/${comment.comment_id}`,
+                      );
+                      setComments(
+                        comments.filter(
+                          (c) => c.comment_id !== comment.comment_id,
+                        ),
+                      );
+                    } catch {
+                      setDeleteError(
+                        "Failed to delete comment. Please try again.",
+                      );
+                    } finally {
+                      setDeletingId(null);
+                    }
+                  }}
+                  aria-label="Delete your comment"
+                >
+                  {deletingId === comment.comment_id ? "Deleting..." : "Delete"}
+                </button>
+              )}
             </div>
           );
         })}
+        {deleteError && <div className="comment-error">{deleteError}</div>}
       </div>
     </div>
   );
