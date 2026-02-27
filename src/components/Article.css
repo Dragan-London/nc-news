@@ -1,0 +1,48 @@
+.comments-section {
+  max-width: 600px;
+  margin: 24px auto 0 auto;
+}
+
+.comment-card {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 8px;
+  margin-bottom: 10px;
+  background: #fafafa;
+}
+
+.comment-author {
+  font-weight: bold;
+  font-size: 0.98rem;
+}
+
+.comment-body {
+  font-size: 0.95rem;
+  margin: 4px 0;
+}
+
+.comment-date {
+  font-size: 0.85rem;
+  color: #666;
+}
+.article-body-section {
+  margin-top: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 12px;
+  background: #f7f7f7;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.article-body-section h3 {
+  margin-top: 0;
+  font-size: 1.1rem;
+}
+
+.article-body-section p {
+  font-size: 1rem;
+  margin-bottom: 0;
+}

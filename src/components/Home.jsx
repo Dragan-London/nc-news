@@ -35,13 +35,11 @@ function Home() {
     <section>
       <h2>Home - All Articles</h2>
       <p>Browse articles by topic, sort, and see details.</p>
-      <ul>
+      <div>
         {articles.map((article) => (
-          <li>
-            <ArticleCard article={article} />
-          </li>
+          <ArticleCard key={article.article_id} article={article} />
         ))}
-      </ul>
+      </div>
     </section>
   );
 }
