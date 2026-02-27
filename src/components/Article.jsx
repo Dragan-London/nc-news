@@ -10,6 +10,9 @@ function Article() {
   const [isLoading, setisLoading] = useState(true);
   const [isError, setisError] = useState(null);
   const [comments, setComments] = useState([]);
+  const [newComment, setNewComment] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   useEffect(() => {
     async function fetchArticle() {
@@ -59,6 +62,48 @@ function Article() {
       )}
       <div className="comments-section">
         <h3>Comments</h3>
+        <form
+          className="comment-form"
+          onSubmit={async (e) => {
+            e.preventDefault();
+            if (!newComment.trim()) return;
+            setIsSubmitting(true);
+            setSubmitError("");
+            try {
+              const response = await axios.post(
+                `https://nc-news-764k.onrender.com/api/articles/${article_id}/comments`,
+                {
+                  username: "grumpy19",
+                  body: newComment,
+                },
+              );
+              setComments([response.data.comment, ...comments]);
+              setNewComment("");
+            } catch {
+              setSubmitError("Failed to post comment. Please try again.");
+            } finally {
+              setIsSubmitting(false);
+            }
+          }}
+        >
+          <textarea
+            className="comment-textarea"
+            value={newComment}
+            onChange={(e) => setNewComment(e.target.value)}
+            rows={3}
+            placeholder="Write your comment..."
+            disabled={isSubmitting}
+          />
+          <br />
+          <button
+            className="comment-submit-btn"
+            type="submit"
+            disabled={isSubmitting || !newComment.trim()}
+          >
+            {isSubmitting ? "Posting..." : "Post Comment"}
+          </button>
+          {submitError && <div className="comment-error">{submitError}</div>}
+        </form>
         {comments.map((comment) => {
           const date = new Date(comment.created_at);
           const formattedDate = date.toLocaleDateString(undefined, {
