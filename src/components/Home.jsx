@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Article from "./Article";
 import axios from "axios";
 import ArticleCard from "./ArticleCard";
@@ -37,7 +38,10 @@ function Home() {
       <p>Browse articles by topic, sort, and see details.</p>
       <div>
         {articles.map((article) => (
-          <ArticleCard key={article.article_id} article={article} />
+          <div key={article.article_id}>
+            <hr />
+            <ArticleCard article={article} />
+          </div>
         ))}
       </div>
     </section>

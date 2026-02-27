@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -41,7 +41,10 @@ function UserPage() {
       <div className="articles-title">Articles by this user:</div>
       {articles.length === 0 && <div>No articles found for this user.</div>}
       {articles.map((article) => (
-        <ArticleCard key={article.article_id} article={article} />
+        <div key={article.article_id}>
+          <hr />
+          <ArticleCard article={article} hideVote={true} />
+        </div>
       ))}
     </div>
   );
